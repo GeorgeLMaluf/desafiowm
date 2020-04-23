@@ -1,0 +1,36 @@
+<h1>{{titulo}}</h1>
+<form [formGroup]="AnuncioForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+    <label>Marca</label>
+    <select id="marca" formControlName="marca" (change)="onMarcaChange($event.target.value)">
+      <option *ngFor="let m of marcas" [value]="m">{{m}}</option>
+    </select>
+  </fieldset>
+  <fieldset>
+    <label>Modelo</label>
+    <select id="modelo" formControlName="modelo" (change)="onModeloChange($event.target.value)" >
+      <option *ngFor="let ml of modelos" [value]="ml">{{ml}}</option>
+    </select>
+  </fieldset>
+  <fieldset>
+    <label>Versao</label>
+    <select id="versao" formControlName="versao">
+      <option *ngFor="let v of versoes" [value]="v">{{v}}</option>
+    </select>
+  </fieldset>
+  <fieldset>
+    <label>Ano</label>
+    <input type="number" id="ano" formControlName="ano">
+  </fieldset>
+  <fieldset>
+    <label>Quilometragem</label>
+    <input type="number" id="quilometragem" formControlName="quilometragem">
+  </fieldset>
+  <fieldset>
+    <label>Observacao</label>
+    <textarea id="observacao" formControlName="observacao"></textarea>
+  </fieldset>
+  <button type="submit" *ngIf="editMode || insertMode">Salvar</button>
+  &nbsp;
+  <button type="button" [routerLink]="['/anuncios']" routerLinkActive="router-link-active">Voltar</button>
+</form>

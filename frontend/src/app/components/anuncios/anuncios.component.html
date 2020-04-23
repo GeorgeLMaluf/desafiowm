@@ -1,0 +1,40 @@
+<h1>Anuncios</h1>
+<button [routerLink] ="['novo']">Novo</button>
+<table *ngIf="anuncios; else carregando">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Vers&atilde;o</th>
+            <th>Ano</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="(anuncios)?.length > 0; else vazio">
+        <tr *ngFor="let anuncio of anuncios">
+            <td>{{anuncio.ID}}</td>
+            <td>{{anuncio.marca}}</td>
+            <td>{{anuncio.modelo}}</td>
+            <td>{{anuncio.versao}}</td>
+            <td>{{anuncio.ano}}</td>
+            <td>
+                <button (click)="editar(anuncio.ID)"> Editar</button>
+                &nbsp;
+                <button (click)="confirmDelete(anuncio.ID)"> Apagar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #carregando>
+    <p>Carregando...</p>
+</ng-template>
+
+<ng-template #vazio>
+    <tbody>
+        <tr>
+            <td colspan="6">Não foram encontrados registros</td>
+        </tr>
+    </tbody>
+</ng-template>
